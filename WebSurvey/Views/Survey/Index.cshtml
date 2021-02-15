@@ -1,0 +1,44 @@
+﻿
+<div class="survey-body">
+    <div class="questions-body">
+        @{
+            foreach (var question in Model.Questions)
+            {
+                <div class="question-block@(question.IsRequired ? " is-required" : "")" data-question-id="@question.ID">
+                    <div class="qb-title">
+                        @question.Title@Html.Raw(question.IsRequired ? "<span class=\"qb-required-mark\">*</span>" : "")
+                    </div>
+                    <div class="qb-options" role="radiogroup">
+                        @{
+                            foreach (var option in question.Options)
+                            {
+                                <label for="option-@option.ID" class="option-block">
+                                    <input type="radio" class="ob-radio" name="question-@question.ID" id="option-@option.ID" value="@option.ID" />
+                                    <div class="ob-radiomark">
+                                        <div class="ob-rm-mark"></div>
+                                    </div>
+                                    <div class="ob-title">
+                                        @option.Title
+                                    </div>
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="questions-footer">
+        <button class="button send-survey">Отправить ответ</button>
+        <div class="qf-info">* Обязательно</div>
+    </div>
+</div>
+
+<div class="done-message">
+    <div class="dm-icon"></div>
+    <div class="dm-text">Опрос успешно пройден!</div>
+    <div class="dm-link">
+        <a href="/Statistics"><span>Статистика</span> →</a>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿<div class="statistics-body">
+    <div class="sb-text">
+        <div class="sb-link">
+            <a href="/">← <span>Назад</span></a>
+        </div>
+        <div class="sb-title">Статистика прохождения опроса</div>
+        <div class="sb-description">Опрос был пройден @Model.AnswersCount раз(а).</div>
+    </div>
+    <div class="statistics-questions">
+        @{
+            foreach (var question in Model.Questions)
+            {
+                <div class="sq-block">
+                    <div class="sq-b-title">@question.Title</div>
+                        <div class="sq-options">
+                            @{
+                                foreach (var option in question.Options)
+                                {
+                                    <div class="sq-o-column">
+                                        <div class="sq-o-fill" style="width: @(option.StringRate)%;"></div>
+                                        <div class="sq-o-title">@option.Title</div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                </div>
+            }
+        }
+    </div>
+</div>
